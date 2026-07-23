@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var theme = stored === 'dark' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Muhamad Arvin Zulfikar</title>
@@ -18,10 +25,56 @@
       --muted: #888884;
       --secondary: #444440;
       --accent: #2563a8;
+      --accent-rgb: 37, 99, 168;
       --badge-text: #15803d;
       --badge-bg: #dcfce7;
       --btn-bg: #111111;
       --btn-text: #ffffff;
+      --error-text: #b91c1c;
+
+      --nav-bg: rgba(255,255,255,0.92);
+      --card-hover-bg: #ffffff;
+      --hairline-overlay: rgba(0,0,0,0.06);
+      --btn-shadow: rgba(0,0,0,0.12);
+      --btn-shadow-strong: rgba(0,0,0,0.16);
+
+      --glass-bg: rgba(255,255,255,0.82);
+      --glass-bg-strong: rgba(255,255,255,0.95);
+      --glass-bg-soft: rgba(255,255,255,0.75);
+      --glass-border: rgba(0,0,0,0.1);
+      --glass-border-strong: rgba(0,0,0,0.22);
+      --glass-shadow: rgba(0,0,0,0.06);
+      --glass-shadow-strong: rgba(0,0,0,0.1);
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #0a0a0a;
+      --bg-soft: #161616;
+      --border: #2c2c2a;
+      --text: #f2f2ee;
+      --muted: #92928c;
+      --secondary: #c2c2bc;
+      --accent: #6fa8dc;
+      --accent-rgb: 111, 168, 220;
+      --badge-text: #4ade80;
+      --badge-bg: rgba(74,222,128,0.15);
+      --btn-bg: #f2f2ee;
+      --btn-text: #111111;
+      --error-text: #f87171;
+
+      --nav-bg: rgba(10,10,10,0.85);
+      --card-hover-bg: #1e1e1c;
+      --hairline-overlay: rgba(255,255,255,0.08);
+      --btn-shadow: rgba(0,0,0,0.4);
+      --btn-shadow-strong: rgba(0,0,0,0.55);
+
+      --glass-bg: rgba(30,30,28,0.75);
+      --glass-bg-strong: rgba(38,38,36,0.92);
+      --glass-bg-soft: rgba(30,30,28,0.65);
+      --glass-border: rgba(255,255,255,0.1);
+      --glass-border-strong: rgba(255,255,255,0.24);
+      --glass-shadow: rgba(0,0,0,0.35);
+      --glass-shadow-strong: rgba(0,0,0,0.45);
     }
 
     html { scroll-behavior: smooth; }
@@ -32,6 +85,7 @@
       color: var(--text);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
     /* ── NAV ── */
@@ -39,9 +93,10 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255,255,255,0.92);
+      background: var(--nav-bg);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
 
     .nav-inner {
@@ -72,11 +127,41 @@
 
     .nav-links a:hover { color: var(--text); }
 
+    .theme-toggle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .theme-toggle:hover {
+      color: var(--text);
+      border-color: var(--text);
+      background: var(--bg-soft);
+    }
+
+    .theme-toggle svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .theme-toggle .icon-moon { display: none; }
+    :root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+    :root[data-theme="dark"] .theme-toggle .icon-moon { display: flex; }
+
     /* ── HERO ── */
     #hero {
       position: relative;
       overflow: hidden;
-      background: #ffffff;
+      background: var(--bg);
       min-height: calc(100vh - 60px);
       display: flex;
       align-items: center;
@@ -140,7 +225,7 @@
       position: absolute;
       inset: 0;
       border-radius: 6px;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06);
+      box-shadow: inset 0 0 0 1px var(--hairline-overlay);
       pointer-events: none;
     }
 
@@ -210,12 +295,12 @@
       background: var(--btn-bg);
       color: var(--btn-text);
       border: 1px solid var(--btn-bg);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 14px var(--btn-shadow);
     }
 
     .hero-btn-primary:hover {
       opacity: 0.88;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.16);
+      box-shadow: 0 8px 20px var(--btn-shadow-strong);
     }
 
     .hero-btn-outline {
@@ -249,7 +334,7 @@
     }
 
     .hero-social-link:hover {
-      color: #fff;
+      color: var(--bg);
       border-color: var(--text);
       background: var(--text);
     }
@@ -298,10 +383,10 @@
     }
 
     .chat-response-card {
-      background: rgba(255,255,255,0.82);
+      background: var(--glass-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid var(--glass-border);
       border-radius: 20px;
       padding: 18px 22px;
       text-align: left;
@@ -327,7 +412,7 @@
       line-height: 1.7;
     }
 
-    .chat-ai-msg.error { color: #b91c1c; }
+    .chat-ai-msg.error { color: var(--error-text); }
 
     .chat-thinking {
       font-size: 0.88rem;
@@ -364,19 +449,19 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(255,255,255,0.82);
+      background: var(--glass-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1.5px solid rgba(0,0,0,0.1);
+      border: 1.5px solid var(--glass-border);
       border-radius: 50px;
       padding: 8px 8px 8px 22px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px var(--glass-shadow);
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.25s;
     }
 
     .chat-input-wrap:focus-within {
-      border-color: rgba(0,0,0,0.22);
-      box-shadow: 0 4px 32px rgba(0,0,0,0.1);
+      border-color: var(--glass-border-strong);
+      box-shadow: 0 4px 32px var(--glass-shadow-strong);
     }
 
     #chat-input {
@@ -397,7 +482,7 @@
       height: 40px;
       border-radius: 50%;
       background: var(--text);
-      color: #fff;
+      color: var(--bg);
       border: none;
       cursor: pointer;
       display: flex;
@@ -426,8 +511,8 @@
       font-size: 0.76rem;
       font-weight: 500;
       color: var(--secondary);
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(0,0,0,0.1);
+      background: var(--glass-bg-soft);
+      border: 1px solid var(--glass-border);
       border-radius: 20px;
       padding: 6px 15px;
       cursor: pointer;
@@ -437,8 +522,8 @@
     }
 
     .chip:hover {
-      background: rgba(255,255,255,0.95);
-      border-color: rgba(0,0,0,0.22);
+      background: var(--glass-bg-strong);
+      border-color: var(--glass-border-strong);
       color: var(--text);
     }
 
@@ -491,7 +576,7 @@
     .btn-primary { background: var(--btn-bg); color: var(--btn-text); }
     .btn-primary:hover { opacity: 0.82; }
     .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
-    .btn-outline:hover { background: var(--bg-soft); border-color: #ccc; }
+    .btn-outline:hover { background: var(--bg-soft); border-color: var(--muted); }
 
     .quote-card {
       background: rgba(255,255,255,0.55);
@@ -739,9 +824,9 @@
     }
 
     .affiliation-card:hover {
-      background: #ffffff;
-      border-color: rgba(37, 99, 168, 0.3);
-      box-shadow: 0 15px 45px -10px rgba(37, 99, 168, 0.15), 0 0 25px rgba(37, 99, 168, 0.08) inset;
+      background: var(--card-hover-bg);
+      border-color: rgba(var(--accent-rgb), 0.3);
+      box-shadow: 0 15px 45px -10px rgba(var(--accent-rgb), 0.15), 0 0 25px rgba(var(--accent-rgb), 0.08) inset;
       z-index: 10;
     }
 
@@ -795,10 +880,10 @@
     }
 
     .ach-card:hover {
-      background: #ffffff;
+      background: var(--card-hover-bg);
       transform: translateY(-6px);
-      border-color: rgba(37, 99, 168, 0.3);
-      box-shadow: 0 15px 45px -10px rgba(37, 99, 168, 0.15), 0 0 25px rgba(37, 99, 168, 0.08) inset;
+      border-color: rgba(var(--accent-rgb), 0.3);
+      box-shadow: 0 15px 45px -10px rgba(var(--accent-rgb), 0.15), 0 0 25px rgba(var(--accent-rgb), 0.08) inset;
     }
 
     .ach-year {
@@ -850,10 +935,10 @@
     }
 
     .project-card:hover {
-      background: #ffffff;
+      background: var(--card-hover-bg);
       transform: translateY(-8px) scale(1.03);
-      border-color: rgba(37, 99, 168, 0.3);
-      box-shadow: 0 15px 45px -10px rgba(37, 99, 168, 0.15), 0 0 25px rgba(37, 99, 168, 0.08) inset;
+      border-color: rgba(var(--accent-rgb), 0.3);
+      box-shadow: 0 15px 45px -10px rgba(var(--accent-rgb), 0.15), 0 0 25px rgba(var(--accent-rgb), 0.08) inset;
       z-index: 10;
     }
 
@@ -1045,10 +1130,10 @@
     }
 
     .risa-card:hover {
-      background: #ffffff;
+      background: var(--card-hover-bg);
       transform: translateY(-4px);
-      border-color: rgba(37, 99, 168, 0.3);
-      box-shadow: 0 15px 45px -10px rgba(37, 99, 168, 0.15), 0 0 25px rgba(37, 99, 168, 0.08) inset;
+      border-color: rgba(var(--accent-rgb), 0.3);
+      box-shadow: 0 15px 45px -10px rgba(var(--accent-rgb), 0.15), 0 0 25px rgba(var(--accent-rgb), 0.08) inset;
     }
 
     .risa-letter {
@@ -1200,6 +1285,22 @@
         <li><a href="#achievements">Achievements</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="2" x2="12" y2="4"/>
+          <line x1="12" y1="20" x2="12" y2="22"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="2" y1="12" x2="4" y2="12"/>
+          <line x1="20" y1="12" x2="22" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
     </div>
   </nav>
 
@@ -1686,6 +1787,12 @@
       <div class="achievements-grid">
 
         <div class="ach-card">
+          <div class="ach-year">2026</div>
+          <div class="ach-title">Speaker — Scholarship for Future Leaders</div>
+          <div class="ach-issuer">ThinkTank Scholarship Week 2026 · ThinkTank.ID</div>
+        </div>
+
+        <div class="ach-card">
           <div class="ach-year">2025</div>
           <div class="ach-title">1st Winner — HI-TECH 7 UI/UX Competition</div>
           <div class="ach-issuer">HIMATISISFO Politeknik Caltex Riau</div>
@@ -1695,6 +1802,18 @@
           <div class="ach-year">2025</div>
           <div class="ach-title">Most Outstanding Graduate — School of Industrial Engineering</div>
           <div class="ach-issuer">Telkom University</div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-year">2025</div>
+          <div class="ach-title">Speaker — Student Creations and Solutions for Indonesia's Future</div>
+          <div class="ach-issuer">InnovaACTION 2025 · ERP Laboratory</div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-year">2025</div>
+          <div class="ach-title">Speaker — Critical Analysis Through Business Cases</div>
+          <div class="ach-issuer">SAG MINI CLASS · SAG Laboratory</div>
         </div>
 
         <div class="ach-card">
@@ -1713,6 +1832,30 @@
           <div class="ach-year">2024</div>
           <div class="ach-title">Outstanding Student 2024 Candidate</div>
           <div class="ach-issuer">Telkom University — Directorate of Student Affairs</div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-year">2024</div>
+          <div class="ach-title">Speaker — Webinar Competition Training 6.0</div>
+          <div class="ach-issuer">ERP Laboratory</div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-year">2024</div>
+          <div class="ach-title">Judge — Essay Competition Training of Kastrat 2024</div>
+          <div class="ach-issuer">BEM FEB Telkom University</div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-year">2024</div>
+          <div class="ach-title">Speaker — GENESIS 2024</div>
+          <div class="ach-issuer">HMSI Telkom University</div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-year">2024</div>
+          <div class="ach-title">Speaker — PKKMB Sistem Informasi Telkom University 2024</div>
+          <div class="ach-issuer">School of Industrial Engineering · Telkom University</div>
         </div>
 
         <div class="ach-card">
@@ -1746,6 +1889,18 @@
         </div>
 
         <div class="ach-card">
+          <div class="ach-year">2023</div>
+          <div class="ach-title">2nd Winner Project Category — ERP MINI CONTEST</div>
+          <div class="ach-issuer">ERP Laboratory · Telkom University</div>
+        </div>
+
+        <div class="ach-card">
+          <div class="ach-year">2023</div>
+          <div class="ach-title">Best Staff of 2nd Triwulan</div>
+          <div class="ach-issuer">SEARCH Telkom University</div>
+        </div>
+
+        <div class="ach-card">
           <div class="ach-year">2022</div>
           <div class="ach-title">1st Winner — Inkubator Wirausaha Teknik</div>
           <div class="ach-issuer">BEM KEMA FT UGM x HMTI UGM</div>
@@ -1761,12 +1916,6 @@
           <div class="ach-year">2022</div>
           <div class="ach-title">TOP 15 — National Business Case Competition TSM ED x BCA Digital</div>
           <div class="ach-issuer">Trisakti School of Management</div>
-        </div>
-
-        <div class="ach-card">
-          <div class="ach-year">2023</div>
-          <div class="ach-title">2nd Winner Project Category — ERP MINI CONTEST</div>
-          <div class="ach-issuer">ERP Laboratory · Telkom University</div>
         </div>
 
         <div class="ach-card">
@@ -1865,12 +2014,25 @@
   </footer>
 
   <script>
+    // ── Theme toggle ──────────────────────────────────────────────────────────
+    (function () {
+      const btn = document.getElementById('theme-toggle');
+      if (!btn) return;
+
+      btn.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const next = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
+
     // ── Hero dynamic typing effect ───────────────────────────────────────────
     (function () {
       const el = document.getElementById('hero-dynamic-text');
       if (!el) return;
 
-      const titles = ['AI Enthusiast', 'Speaker', 'Master Student', 'Student Mentor', 'Lifelong Learner'];
+      const titles = ['AI Enthusiast', 'Speaker', 'Master Student', 'Student Mentor', 'Lifelong Learner', 'Business & IT Bridge-Builder'];
       const TYPE_SPEED = 80;
       const DELETE_SPEED = 45;
       const HOLD_TIME = 1600;
