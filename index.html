@@ -102,7 +102,7 @@
     .nav-inner {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 56px;
       height: 60px;
       display: flex;
       align-items: center;
@@ -175,7 +175,7 @@
       width: 100%;
       max-width: 1180px;
       margin: 0 auto;
-      padding: 80px 32px 80px;
+      padding: 80px 56px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -605,7 +605,7 @@
     .section-wrap {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 72px 32px;
+      padding: 72px 56px;
       border-top: 1px solid var(--border);
     }
 
@@ -949,6 +949,21 @@
       border-radius: 10px;
       margin-bottom: 22px;
       border: 1px solid var(--border);
+    }
+
+    .project-status {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #b45309;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      margin-bottom: 14px;
     }
 
     .project-header-row {
@@ -1599,6 +1614,27 @@
     <div class="section-wrap">
       <h2 class="section-heading">Selected Projects</h2>
       <div class="projects-grid">
+
+        <div class="project-card">
+          <span class="project-status">In Progress</span>
+          <img src="myself/ChampIo.png" alt="Champio — competition prep platform for Indonesian students" class="project-cover" />
+          <div class="project-header-row">
+            <h3 class="project-title">Champio</h3>
+          </div>
+          <p class="project-desc">
+            A learning-and-diagnostics platform for Indonesian university students competing in business
+            case, business plan, and academic essay competitions, currently in development. It combines two
+            modules: track-based learning, with ordered modules per competition format gated by quiz
+            milestones and a library of winning reference papers, and an AI diagnostic engine that lets
+            teams upload a draft and receive rubric-aligned, scored feedback with evidence citations,
+            tracking score improvements across versions.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">Google Gemini</span>
+          </div>
+        </div>
 
         <div class="project-card">
           <img src="myself/RoamIo pitchdeck (1).png" alt="RoamIo — AI Travel Companion" class="project-cover" />
