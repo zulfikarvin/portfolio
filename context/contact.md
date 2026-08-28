@@ -1,7 +1,7 @@
 # Contact & Availability
 
 Arvin is based in Amsterdam, Netherlands.
-He is graduating in August 2026 and is actively seeking junior roles in the Netherlands.
+He recently finished his MSc at VU Amsterdam and is actively seeking junior roles in the Netherlands.
 He is open to opportunities in digital business, AI, business analysis, process management, and product management.
 
 ## Contact Details
