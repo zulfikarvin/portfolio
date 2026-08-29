@@ -15,7 +15,11 @@ export function loadContext(rootDir) {
   if (files.length === 0) return ''
 
   return files.map(file => {
+    // HTML comments are private notes-to-self - strip them so they never reach the model
     const raw = fs.readFileSync(path.join(contextDir, file), 'utf-8')
+      .replace(/<!--[\s\S]*?-->/g, '')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim()
     const label = file.replace('.md', '').replace(/-/g, ' ')
     return `### ${label}\n\n${raw}`
   }).join('\n\n---\n\n')
