@@ -1,6 +1,6 @@
 # Projects
 
-Note: these are the same projects shown in the "Selected Projects" section of the portfolio website.
+Note: these are the same projects shown in the "Projects" section of the portfolio website.
 
 ## Champio (in development)
 A learning-and-diagnostics platform for Indonesian university students competing in business case, business plan, and academic essay competitions.
@@ -10,6 +10,12 @@ It combines two modules:
 Built with: Next.js, Supabase, Google Gemini.
 Status: currently in development.
 Origin: grew out of Arvin's own competition experience and the Sieca FRI competitions academy he founded.
+Link: GitHub https://github.com/zulfikarvin/champio
+
+## VacancyScore
+Paste a job vacancy and VacancyScore compares it against your uploaded CVs, identifies the best version to submit, and scores how well it fits the role. The results highlight matched and missing keywords, explain gaps between the vacancy and your experience, and provide specific edits to strengthen your application. Previous analyses are saved so users can revisit each recommendation.
+Built with: Next.js 15, FastAPI, Google Gemini 2.5 Flash, PostgreSQL, SQLAlchemy, Tailwind CSS.
+Link: GitHub https://github.com/zulfikarvin/vacancyscore
 
 ## RoamIo (2025)
 An AI travel companion for digital nomads, helping them handle visa-related administrative tasks using information that is currently scattered across the internet and rarely personalised.
