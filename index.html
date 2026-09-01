@@ -26,6 +26,7 @@
       --secondary: #444440;
       --accent: #2563a8;
       --accent-rgb: 37, 99, 168;
+      --climax: #9a5b00;
       --badge-text: #15803d;
       --badge-bg: #dcfce7;
       --btn-bg: #111111;
@@ -56,6 +57,7 @@
       --secondary: #c2c2bc;
       --accent: #6fa8dc;
       --accent-rgb: 111, 168, 220;
+      --climax: #f4c35a;
       --badge-text: #4ade80;
       --badge-bg: rgba(74,222,128,0.15);
       --btn-bg: #f2f2ee;
@@ -241,23 +243,44 @@
     }
 
     .hero-dynamic-text {
+      position: relative;
       font-style: italic;
       color: var(--text);
+      background-image: linear-gradient(var(--climax), var(--climax));
+      background-position: left bottom;
+      background-repeat: no-repeat;
+      background-size: 0 2px;
+      transition: color 0.4s ease, font-weight 0.4s ease, background-size 0.7s ease-out;
     }
 
-    .hero-dynamic-cursor {
-      display: inline-block;
-      font-style: italic;
+    .hero-dynamic-text::after {
+      content: '|';
+      display: inline;
       color: var(--text);
       font-weight: 400;
       margin-left: 2px;
       animation: hero-cursor-blink 0.9s step-end infinite;
     }
 
+    .hero-dynamic-text.is-climax {
+      color: var(--climax);
+      font-weight: 700;
+      background-size: 100% 2px;
+    }
+
+    .hero-dynamic-text.is-nowrap {
+      white-space: nowrap;
+    }
+
+    .hero-dynamic-text.is-climax::after {
+      color: var(--climax);
+    }
+
     @keyframes hero-cursor-blink {
       0%, 49% { opacity: 1; }
       50%, 100% { opacity: 0; }
     }
+
 
     .hero-tagline {
       font-size: 0.97rem;
@@ -1294,8 +1317,8 @@
         <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#work">Work</a></li>
-        <li><a href="#tedx">TEDx</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#tedx">TEDx</a></li>
         <li><a href="#organizations">Organizations</a></li>
         <li><a href="#achievements">Achievements</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1326,13 +1349,13 @@
       <div class="hero-split">
         <div class="hero-left">
           <span class="hero-kicker">Portfolio</span>
-          <h1>I'm Arvin, <span class="hero-dynamic-text" id="hero-dynamic-text"></span><span class="hero-dynamic-cursor">|</span></h1>
+          <h1>I'm Arvin, <span class="hero-dynamic-text" id="hero-dynamic-text"></span></h1>
           <p class="hero-tagline">
-            Graduate Master in Digital Business &amp; Innovation. I connect business and IT to help
+            With an MSc in Digital Business &amp; Innovation, I connect business and IT to help
             organizations become more efficient. Currently exploring deeply about Artificial Intelligence.
           </p>
           <div class="hero-cta-row">
-            <a href="#projects" class="hero-btn hero-btn-primary">Selected Works</a>
+            <a href="#projects" class="hero-btn hero-btn-primary">My Projects</a>
             <a href="#contact" class="hero-btn hero-btn-outline">Get in Touch</a>
           </div>
           <div class="hero-social-row">
@@ -1607,7 +1630,7 @@
   <!-- ── SELECTED PROJECTS ── -->
   <section id="projects">
     <div class="section-wrap">
-      <h2 class="section-heading">Selected Projects</h2>
+      <h2 class="section-heading">Projects</h2>
       <div class="projects-grid">
 
         <div class="project-card">
@@ -1615,6 +1638,9 @@
           <img src="myself/ChampIo.png" alt="Champio — competition prep platform for Indonesian students" class="project-cover" />
           <div class="project-header-row">
             <h3 class="project-title">Champio</h3>
+            <div class="project-links">
+              <a href="https://github.com/zulfikarvin/champio" target="_blank" rel="noopener">GitHub</a>
+            </div>
           </div>
           <p class="project-desc">
             A learning-and-diagnostics platform for Indonesian university students competing in business
@@ -1628,6 +1654,28 @@
             <span class="project-tag">Next.js</span>
             <span class="project-tag">Supabase</span>
             <span class="project-tag">Google Gemini</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="https://raw.githubusercontent.com/zulfikarvin/vacancyscore/main/docs/results.png" alt="VacancyScore job vacancy and CV fit analysis results" class="project-cover" />
+          <div class="project-header-row">
+            <h3 class="project-title">VacancyScore</h3>
+            <div class="project-links">
+              <a href="https://github.com/zulfikarvin/vacancyscore" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+          <p class="project-desc">
+            Paste a job vacancy and VacancyScore compares it against your uploaded CVs, identifies the best
+            version to submit, and scores how well it fits the role. The results highlight matched and missing
+            keywords, explain gaps between the vacancy and your experience, and provide specific edits to
+            strengthen your application. Previous analyses are saved so you can revisit each recommendation.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">Google Gemini</span>
+            <span class="project-tag">PostgreSQL</span>
           </div>
         </div>
 
@@ -2045,6 +2093,11 @@
   </footer>
 
   <script>
+    // Keep Projects immediately before the TEDx section in the page flow.
+    const projectsSection = document.getElementById('projects');
+    const tedxSection = document.getElementById('tedx');
+    if (projectsSection && tedxSection) projectsSection.after(tedxSection);
+
     // ── Theme toggle ──────────────────────────────────────────────────────────
     (function () {
       const btn = document.getElementById('theme-toggle');
@@ -2063,10 +2116,12 @@
       const el = document.getElementById('hero-dynamic-text');
       if (!el) return;
 
-      const titles = ['AI Enthusiast', 'Speaker', 'Master Student', 'Student Mentor', 'Lifelong Learner', 'Business & IT Bridge-Builder'];
+      const titles = ['Digital Innovation Explorer', 'AI Enthusiast', 'Business–Technology Problem Solver', 'Lifelong Learner'];
       const TYPE_SPEED = 80;
       const DELETE_SPEED = 45;
       const HOLD_TIME = 1600;
+      const CLIMAX_TYPE_SPEED = 115;
+      const CLIMAX_HOLD_TIME = 4800;
       const GAP_TIME = 300;
 
       function withArticle(title) {
@@ -2081,19 +2136,24 @@
 
       function tick() {
         const word = words[wordIndex];
+        const isClimax = wordIndex === words.length - 1;
+        el.classList.toggle('is-nowrap', isClimax);
 
         if (charIndex <= word.length) {
           el.textContent = word.slice(0, charIndex);
           charIndex++;
-          setTimeout(tick, TYPE_SPEED);
+          setTimeout(tick, isClimax ? CLIMAX_TYPE_SPEED : TYPE_SPEED);
           return;
         }
 
-        setTimeout(deleteTick, HOLD_TIME);
+        if (isClimax) el.classList.add('is-climax');
+        setTimeout(deleteTick, isClimax ? CLIMAX_HOLD_TIME : HOLD_TIME);
       }
 
       function deleteTick() {
         const word = words[wordIndex];
+
+        el.classList.remove('is-climax');
 
         if (charIndex > 0) {
           charIndex--;
