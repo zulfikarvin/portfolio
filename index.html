@@ -9,7 +9,7 @@
     })();
   </script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
   <title>Muhamad Arvin Zulfikar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -189,7 +189,7 @@
       align-items: center;
       gap: 64px;
       width: 100%;
-      margin-bottom: 56px;
+      margin-bottom: 0;
     }
 
     .hero-left {
@@ -374,180 +374,6 @@
       font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.06em;
-    }
-
-    /* ── CHAT WIDGET ── */
-    .chat-widget {
-      width: 100%;
-      max-width: 620px;
-    }
-
-    .chat-intro {
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .chat-intro-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .chat-intro-subtitle {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    /* Response card */
-    .chat-response-area {
-      margin-bottom: 10px;
-    }
-
-    .chat-response-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 18px 22px;
-      text-align: left;
-      animation: fadeUp 0.28s ease;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .chat-user-msg {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .chat-ai-msg {
-      font-size: 0.92rem;
-      color: var(--secondary);
-      line-height: 1.7;
-    }
-
-    .chat-ai-msg.error { color: var(--error-text); }
-
-    .chat-thinking {
-      font-size: 0.88rem;
-      color: var(--muted);
-      font-style: italic;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .dot-pulse {
-      display: flex;
-      gap: 4px;
-    }
-
-    .dot-pulse span {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--muted);
-      animation: pulse 1.2s ease-in-out infinite;
-    }
-
-    .dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
-    .dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes pulse {
-      0%, 80%, 100% { opacity: 0.25; transform: scale(0.85); }
-      40%            { opacity: 1;    transform: scale(1); }
-    }
-
-    /* Input row */
-    .chat-input-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1.5px solid var(--glass-border);
-      border-radius: 50px;
-      padding: 8px 8px 8px 22px;
-      box-shadow: 0 4px 24px var(--glass-shadow);
-      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.25s;
-    }
-
-    .chat-input-wrap:focus-within {
-      border-color: var(--glass-border-strong);
-      box-shadow: 0 4px 32px var(--glass-shadow-strong);
-    }
-
-    #chat-input {
-      flex: 1;
-      border: none;
-      outline: none;
-      background: transparent;
-      font-family: inherit;
-      font-size: 0.93rem;
-      color: var(--text);
-      padding: 6px 0;
-    }
-
-    #chat-input::placeholder { color: var(--muted); }
-
-    #chat-send {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--text);
-      color: var(--bg);
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: opacity 0.15s, transform 0.15s;
-    }
-
-    #chat-send:hover:not(:disabled) { opacity: 0.8; transform: scale(1.06); }
-    #chat-send:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
-
-    #chat-send svg { width: 16px; height: 16px; }
-
-    /* Chips */
-    .chat-chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 14px;
-    }
-
-    .chip {
-      font-family: inherit;
-      font-size: 0.76rem;
-      font-weight: 500;
-      color: var(--secondary);
-      background: var(--glass-bg-soft);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 6px 15px;
-      cursor: pointer;
-      backdrop-filter: blur(8px);
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
-      white-space: nowrap;
-    }
-
-    .chip:hover {
-      background: var(--glass-bg-strong);
-      border-color: var(--glass-border-strong);
-      color: var(--text);
     }
 
     .hero-badge {
@@ -1307,6 +1133,7 @@
       footer .f-inner { flex-direction: column; gap: 6px; text-align: center; }
     }
   </style>
+  <link rel="stylesheet" href="/src/chat-widget.css" />
 </head>
 <body>
 
@@ -1387,44 +1214,7 @@
         </div>
       </div>
 
-      <!-- ── CHAT WIDGET ── -->
-      <div class="chat-widget">
 
-        <div class="chat-intro">
-          <p class="chat-intro-title">Curious for more?</p>
-          <p class="chat-intro-subtitle">Ask me more about my journey, projects, or professional aspirations.</p>
-        </div>
-
-        <!-- Response appears here -->
-        <div class="chat-response-area" id="chat-response-area"></div>
-
-        <!-- Input -->
-        <div class="chat-input-wrap">
-          <input
-            type="text"
-            id="chat-input"
-            placeholder="Ask me anything..."
-            autocomplete="off"
-            maxlength="300"
-          />
-          <button id="chat-send" aria-label="Send">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Suggestion chips -->
-        <div class="chat-chips" id="chat-chips">
-          <button class="chip" data-q="Tell me about Arvin">Tell me about Arvin</button>
-          <button class="chip" data-q="What is he studying?">What is he studying?</button>
-          <button class="chip" data-q="What has he achieved?">What has he achieved?</button>
-          <button class="chip" data-q="Is he open to opportunities?">Is he open to opportunities?</button>
-          <button class="chip" data-q="What projects has he built?">What projects has he built?</button>
-          <button class="chip" data-q="Tell me about his TEDx talk">Tell me about his TEDx talk</button>
-        </div>
-
-      </div><!-- /.chat-widget -->
 
     </div><!-- /.hero-center -->
   </section>
@@ -2197,91 +1987,7 @@
       });
     })();
 
-    // ── Chat widget ───────────────────────────────────────────────────────────
-    (function () {
-      const input      = document.getElementById('chat-input');
-      const sendBtn    = document.getElementById('chat-send');
-      const responseArea = document.getElementById('chat-response-area');
-
-      let history = [];   // multi-turn: [{ role: 'user'|'model', content: '...' }]
-
-      function escHtml(s) {
-        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      }
-
-      // Simple markdown bold/italic renderer
-      function renderMd(s) {
-        return escHtml(s)
-          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-          .replace(/\*(.+?)\*/g,     '<em>$1</em>')
-          .replace(/\n/g, '<br>');
-      }
-
-      function setLoading(question) {
-        responseArea.innerHTML = `
-          <div class="chat-response-card">
-            <div class="chat-user-msg">${escHtml(question)}</div>
-            <div class="chat-thinking">
-              <div class="dot-pulse">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-          </div>`;
-      }
-
-      function setResponse(question, answer, isError) {
-        responseArea.innerHTML = `
-          <div class="chat-response-card">
-            <div class="chat-user-msg">${escHtml(question)}</div>
-            <div class="chat-ai-msg ${isError ? 'error' : ''}">${renderMd(answer)}</div>
-          </div>`;
-      }
-
-      async function send(message) {
-        message = message.trim();
-        if (!message) return;
-
-        input.value   = '';
-        input.disabled  = true;
-        sendBtn.disabled = true;
-
-        setLoading(message);
-
-        try {
-          const res = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message, history })
-          });
-
-          const data = await res.json();
-
-          if (!res.ok || data.error) {
-            throw new Error(data.error || 'Server error');
-          }
-
-          history.push({ role: 'user',  content: message });
-          history.push({ role: 'model', content: data.response });
-
-          setResponse(message, data.response, false);
-        } catch (err) {
-          setResponse(message, err.message || 'Something went wrong. Please try again.', true);
-        } finally {
-          input.disabled   = false;
-          sendBtn.disabled = false;
-          input.focus();
-        }
-      }
-
-      sendBtn.addEventListener('click', () => send(input.value));
-      input.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(input.value); }
-      });
-
-      document.querySelectorAll('.chip').forEach(chip => {
-        chip.addEventListener('click', () => send(chip.dataset.q));
-      });
-    })();
   </script>
+  <script type="module" src="/src/chat-widget.js"></script>
 </body>
 </html>
